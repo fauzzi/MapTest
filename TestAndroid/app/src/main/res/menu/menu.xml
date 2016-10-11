@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <group>
+
+    <item
+      android:id="@+id/action_current"
+      android:title="Current" />
+
+    <item
+      android:id="@+id/action_save"
+      android:title="Save" />
+
+    <item
+      android:id="@+id/action_view"
+      android:title="View" />
+
+    <item
+      android:id="@+id/action_distance"
+      android:title="Distance" />
+
+    <item
+      android:id="@+id/action_nearby_place"
+      android:title="Nearby"/>
+
+  </group>
+
+</menu>
