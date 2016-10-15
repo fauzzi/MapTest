@@ -42,6 +42,7 @@
     </activity>
     <activity android:name=".DistanceCalculationActivity" />
     <activity android:name=".NearbyPlaceActivity" />
+    <activity android:name=".FirecastsActivity"/>
   </application>
 
 </manifest>

@@ -23,7 +23,11 @@
 
     <item
       android:id="@+id/action_nearby_place"
-      android:title="Nearby"/>
+      android:title="Nearby" />
+
+    <item
+      android:id="@+id/action_firecasts"
+      android:title="Firecasts" />
 
   </group>
 

@@ -191,6 +191,9 @@ public class MapsActivity extends ToolbarActivity implements OnMapReadyCallback,
       case R.id.action_nearby_place:
         startActivity(new Intent(MapsActivity.this, NearbyPlaceActivity.class));
         return true;
+      case R.id.action_firecasts:
+        startActivity(new Intent(MapsActivity.this, FirecastsActivity.class));
+        return true;
       default:
         return super.onOptionsItemSelected(item);
     }

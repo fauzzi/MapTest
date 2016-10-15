@@ -1,0 +1,51 @@
+{
+  "project_info": {
+    "project_number": "521401814611",
+    "firebase_url": "https://sodium-hope-145716.firebaseio.com",
+    "project_id": "sodium-hope-145716",
+    "storage_bucket": "sodium-hope-145716.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521401814611:android:35918703358594d6",
+        "android_client_info": {
+          "package_name": "com.example.akhma.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521401814611-38j3h6i1ectc3p24lsr5g2vtanna65g2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.akhma.myapplication",
+            "certificate_hash": "50B89256436890B36800B21A0AE9386BAF15DF7D"
+          }
+        },
+        {
+          "client_id": "521401814611-77vjuqpa5nu8hvmlrg01um6dp9f7qk50.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [{ "current_key": "client" }],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "521401814611-77vjuqpa5nu8hvmlrg01um6dp9f7qk50.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
