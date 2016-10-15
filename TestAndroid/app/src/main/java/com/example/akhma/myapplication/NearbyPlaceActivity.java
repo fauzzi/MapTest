@@ -146,7 +146,8 @@ public class NearbyPlaceActivity extends ToolbarActivity implements OnMapReadyCa
 
   private void loadNearByPlaces(double latitude, double longitude) {
 //YOU Can change this type at your own will, e.g hospital, cafe, restaurant.... and see how it all works
-    String type = "grocery_or_supermarket";
+//    grocery_or_supermarket
+    String type = "hospital";
     StringBuilder googlePlacesUrl =
       new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
     googlePlacesUrl.append("location=").append(latitude).append(",").append(longitude);
@@ -154,6 +155,8 @@ public class NearbyPlaceActivity extends ToolbarActivity implements OnMapReadyCa
     googlePlacesUrl.append("&types=").append(type);
     googlePlacesUrl.append("&sensor=true");
     googlePlacesUrl.append("&key=" + GOOGLE_BROWSER_API_KEY);
+
+    Log.e("fauzi", googlePlacesUrl.toString());
 
 
     JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, googlePlacesUrl.toString(), null,
@@ -229,6 +232,7 @@ public class NearbyPlaceActivity extends ToolbarActivity implements OnMapReadyCa
     }
   }
 
+
   @Override
   public void onLocationChanged(Location location) {
     double latitude = location.getLatitude();
@@ -244,7 +248,7 @@ public class NearbyPlaceActivity extends ToolbarActivity implements OnMapReadyCa
 
   @Override
   public void onStatusChanged(String s, int i, Bundle bundle) {
-
+    Log.e(TAG, s);
   }
 
   @Override
