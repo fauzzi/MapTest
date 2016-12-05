@@ -54,6 +54,7 @@ public class DistanceCalculationActivity extends ToolbarActivity implements
   GoogleApiClient.OnConnectionFailedListener,
   GoogleMap.OnMarkerDragListener,
   GoogleMap.OnMapLongClickListener,
+
   View.OnClickListener {
 
   //Our Map

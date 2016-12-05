@@ -2,6 +2,8 @@ package com.example.akhma.myapplication;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import com.example.akhma.myapplication.base.ToolbarActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,6 +30,10 @@ import com.google.android.gms.maps.model.LatLng;
 
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 
@@ -41,6 +48,8 @@ public class MapsActivity extends ToolbarActivity implements OnMapReadyCallback,
   private double latitude;
 
   private GoogleApiClient googleApiClient;
+  private Geocoder geocoder;
+  private List<android.location.Address> addresses;
 
 
   @Override
@@ -114,7 +123,8 @@ public class MapsActivity extends ToolbarActivity implements OnMapReadyCallback,
 
 
   //Getting current location
-  private Location getCurrentLocation() {
+  private Location getCurrentLocation() throws Exception {
+
     Location location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
 
     //Creating a location object
@@ -134,7 +144,9 @@ public class MapsActivity extends ToolbarActivity implements OnMapReadyCallback,
       longitude = location.getLongitude();
       latitude = location.getLatitude();
 
-      Log.e("Fauzi", "" + latitude + ", " + longitude);
+
+      Log.e("Fauzi", "" + latitude + ", " + longitude + ", " + getCompleteAddressString(latitude, longitude));
+
 
       //moving the map to location
       moveMap();
@@ -146,7 +158,7 @@ public class MapsActivity extends ToolbarActivity implements OnMapReadyCallback,
   private void moveMap() {
     //String to display current latitude and longitude
     String msg = latitude + ", " + longitude;
-    Log.e("fauzi", msg);
+//    Log.e("fauzi", msg);
 
     //Creating a LatLng Object to store Coordinates
     LatLng latLng = new LatLng(latitude, longitude);
@@ -178,7 +190,11 @@ public class MapsActivity extends ToolbarActivity implements OnMapReadyCallback,
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.action_current:
-        getCurrentLocation();
+        try {
+          getCurrentLocation();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
         moveMap();
         return true;
       case R.id.action_save:
@@ -201,7 +217,11 @@ public class MapsActivity extends ToolbarActivity implements OnMapReadyCallback,
 
   @Override
   public void onConnected(@Nullable Bundle bundle) {
-    getCurrentLocation();
+    try {
+      getCurrentLocation();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
@@ -244,4 +264,31 @@ public class MapsActivity extends ToolbarActivity implements OnMapReadyCallback,
     //Moving the map
     moveMap();
   }
+
+
+  private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
+    String strAdd = "";
+    Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+    try {
+      List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
+      if (addresses != null) {
+        Address returnedAddress = addresses.get(0);
+        StringBuilder strReturnedAddress = new StringBuilder("");
+
+        for (int i = 0; i < returnedAddress.getMaxAddressLineIndex(); i++) {
+          strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
+        }
+        strAdd = strReturnedAddress.toString();
+        Log.e("address", "" + strReturnedAddress.toString());
+      } else {
+        Log.e("address", "No Address returned!");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      Log.e("address", "Canont get Address!");
+    }
+    return strAdd;
+  }
+
+
 }
